@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.simple.command.BoardVO;
 import com.simple.service.BoardServiceImpl;
@@ -24,25 +26,30 @@ public class BoardController {
 		
 	}
 	
-	//폼태그요청
+	//게시글 등록
 	@RequestMapping("/boardForm")
-	public String boardForm(@ModelAttribute("vo") BoardVO vo) {
-		System.out.println(" 컨트롤러");
+	public String boardForm(BoardVO vo) {
+		
 		boardService.boardRegist(vo);
 		return "service/boardResult";
 	}
-	
-	@RequestMapping("/boardResult")
-	public void boardResult() {
-		
-	}
-	
-	//게시판리스트요청
+			
+	//게시판리스트화면 처리
 	@RequestMapping("/boardList")
 	public String boardList(Model model) {	
+		
 		ArrayList<BoardVO> list =boardService.getList();
 		model.addAttribute("list",list);
 		return "service/boardList";
+	}
+	
+	//게시판삭제요청
+	@RequestMapping("/boardDelete")
+	public String boardDelete(@RequestParam("num") int num,RedirectAttributes RA) {
+
+		boardService.boardDelete(num);
+		RA.addAttribute("num",num);
+		return "redirect:/service/boardList";
 	}
 	
 }

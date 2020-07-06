@@ -143,6 +143,13 @@
 	    <version>3.3.1</version>
 	</dependency>
 	
+	<!-- 스프핑에서 제공하느 jdbc기능을 사용하기 위해 반드시 필요 -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	
 	
 	</dependencies>
 	

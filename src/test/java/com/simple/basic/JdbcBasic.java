@@ -5,16 +5,17 @@ import java.sql.DriverManager;
 
 import org.junit.Test;
 
-public class JdbcBasic {
+public class JDBCBasic {
 	
 	//Junit - 단위테스트환경 (자바에서 작은단위만 분리해서 테스팅)
 	//@Test어노테이션이 붙은 메서드를 main 메서드처럼 실행
+	
 	@Test
 	public void test() {
 		//데이터베이스 연결 확인
 		String url = "jdbc:oracle:thin:@localhost:1521/XEPDB1";
 		String uid="spring";
-		String upw="spirng";
+		String upw="oracle";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
